@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
-import { Button, Modal, Alert } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 import { onLoadCustomers, AddCustomers, DeleteCustomer, EditCustomers } from './../../../Data/api/Customers-api';
-import { getRandomInt } from './../../../Utilits/Utilits';
 
 import CustomerTable from './../Components/CustomerTable'
 import AlertNotice from './../../AlertNotifer/AlertNotifer'
@@ -31,21 +30,17 @@ class CustomersList extends Component {
 
     onInputChange = (e) => {
         let el = e.target;
-
        this.setState({[el.name]: el.value})
     };
 
-    onPhoneInput = (e) => {
-        if(e.target.validity.valid){
-            this.setState({customerPhone: e.target.value})
-        }
-    };
+
 
     resetState = () => {
         this.setState({
             customerModal: false,
             EditCustomer: false,
             DeleteCustomer: false,
+            validationWarring: '',
             customerName: '',
             customerAddress: '',
             customerPhone: '',
@@ -76,7 +71,7 @@ class CustomersList extends Component {
           this.handleClose();
           this.resetState();
       } else {
-          alert('Please fill in all fields.')
+          this.setState({validationWarring: 'Please fill in all fields.'});
       }
     };
 
@@ -149,6 +144,8 @@ class CustomersList extends Component {
                         </Modal.Header>
 
                         <Modal.Body>
+                            {this.state.validationWarring && <div className="form-warring">{this.state.validationWarring}</div>}
+
                             <input
                                 placeholder="Name"
                                 type="text"
@@ -165,11 +162,10 @@ class CustomersList extends Component {
                             />
                             <input
                                 placeholder="Phone"
-                                type="text"
+                                type="number"
                                 name="customerPhone"
-                                pattern="[0-9]*"
                                 value={this.state.customerPhone}
-                                onChange={this.onPhoneInput}
+                                onChange={this.onInputChange}
                             />
                         </Modal.Body>
 

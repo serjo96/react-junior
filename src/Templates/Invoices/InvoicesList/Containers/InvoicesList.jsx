@@ -134,13 +134,13 @@ class InvoicesList extends Component {
                             <div>
                                 <label htmlFor="">Select Customer</label>
                             </div>
+
                             <Select
                                 value={this.state.selectedCustomerOption}
                                 onChange={this.ChangeCustomerSelect}
                                 options={convertArrayToSelectOptions(this.props.CustomersList.list)}
                                 isClearable={true}
                             />
-
 
                             <div>
                                 <label htmlFor="">Discount: </label>

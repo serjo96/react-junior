@@ -7,3 +7,12 @@
 	align-items: flex-end;
 	justify-content: flex-end;
 }
+
+.form-warring{
+	border: 1px solid #D40F0F;
+	border-radius: 5px;
+	padding: 5px;
+	color: #D40F0F;
+	width: 250px;
+	margin-bottom: 5px;
+}

@@ -28,18 +28,17 @@ const InvoicesTable = (data) => {
                     <td>{el.discount}</td>
                     <td>{el.total}</td>
                     <td>
-                        <button>
-                            <Link to={{
-                                pathname: `/invoices/${el.id}/edit`,
-                                state: {
-                                    id: el.id,
-                                    CustomerOption: { value: el.customer_id, label: el.customerName},
-                                    discount: el.discount
-                                }
-                            }}>
-                                Edit
-                            </Link>
-                        </button>
+                        <Link to={{
+                            pathname: `/invoices/${el.id}/edit`,
+                            state: {
+                                id: el.id,
+                                CustomerOption: { value: el.customer_id, label: el.customerName},
+                                discount: el.discount
+                            }
+                        }}>
+                            <button>Edit</button>
+                        </Link>
+
                         <button onClick={()=>data.showDeleteModal(el.id)}>Delete</button>
                     </td>
                 </tr>

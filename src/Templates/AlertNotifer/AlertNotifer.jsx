@@ -38,7 +38,6 @@ class AlertNotice extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
     onCloseAlert: () => dispatch(onCloseAlert()),
-
 });
 
 function mapStateToProps(state) {

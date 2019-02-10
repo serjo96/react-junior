@@ -21,6 +21,7 @@ class ProductsList extends Component {
             productName: '',
             productAddress: '',
             productPrice: '',
+            validationWarring: '',
             productId: 0,
         }
     }
@@ -44,23 +45,20 @@ class ProductsList extends Component {
             DeleteProduct: false,
             productName: '',
             productPrice: '',
+            validationWarring: '',
             productId: 0,
         })
     };
 
     validateForm = () => {
         let { productName, productPrice } = this.state;
-            if(/^\d{0,8}(\.\d{1,4})?$/.test(productPrice)) {
-                if (productName.length > 0 && productPrice.length > 0) {
-                    return true;
-                } else {
-                    alert('Please fill in all fields.');
-                    return false;
-                }
-            } else{
-                alert('Price must be only in numbers');
+        if (productName.length > 0 && productPrice.length > 0) {
+            return true;
+               } else {
+            this.setState({validationWarring: 'Please fill in all fields.'});
                 return false;
             }
+
     };
 
     onSubmitForm = () => {
@@ -154,6 +152,8 @@ class ProductsList extends Component {
                         </Modal.Header>
 
                         <Modal.Body>
+                            {this.state.validationWarring && <div className="form-warring">{this.state.validationWarring}</div>}
+
                             <input
                                 placeholder="Name"
                                 type="text"
@@ -164,7 +164,7 @@ class ProductsList extends Component {
                          
                             <input
                                 placeholder="Price"
-                                type="text"
+                                type="number"
                                 name="productPrice"
                                 value={this.state.productPrice}
                                 onChange={this.onInputChange}
