@@ -1,0 +1,9 @@
+.edit-form{
+	margin-bottom: 25px;
+}
+
+.save-list-button{
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
